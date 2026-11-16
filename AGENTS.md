@@ -4,7 +4,7 @@
 
 將 CFD 與神經網路研究整理為可閱讀、可追溯、可持續新增的繁體中文靜態網站。讀者以對工程與 AI 有興趣的同學為主，先解釋研究問題，再呈現證據及限制。
 
-使用繁體中文溝通；開發設備為 MacBook Pro M1。只有使用者要求 commit／push 時才執行，身分為 JoshWang1018 <yuxunwang911018@gmail.com>。上傳與發布依使用者明確指定的目的地及範圍執行；不要自行建立遠端儲存庫或啟用網站發布。2026-11-16 使用者已授權上傳至既有的 wyhen14/boiling-research-notes，本次不啟用 GitHub Pages。
+使用繁體中文溝通；開發設備為 MacBook Pro M1。只有使用者要求 commit／push 時才執行，身分為 JoshWang1018 <yuxunwang911018@gmail.com>。上傳與發布依使用者明確指定的目的地及範圍執行；不要自行建立遠端儲存庫或啟用網站發布。2026-11-16 使用者已授權上傳至既有的 yuxunwang911018/boiling-research-notes，本次不啟用 GitHub Pages。
 
 ## 開始前
 

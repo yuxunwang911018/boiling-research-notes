@@ -8,7 +8,7 @@
 
 2026-11-16：使用者已確認將本專案原始檔、規則文件、選定圖像及研究數值上傳至指定的公開儲存庫。網站尚未發布，GitHub Pages 設定與作業繳交由使用者接續完成。
 
-原始碼儲存庫：[wyhen14/boiling-research-notes](https://github.com/wyhen14/boiling-research-notes)。
+原始碼儲存庫：[yuxunwang911018/boiling-research-notes](https://github.com/yuxunwang911018/boiling-research-notes)。
 
 `dist/` 是由原始檔產生的網站成品，依 .gitignore 不上傳；後續部署時先執行下方建置指令，再發布 `dist/`。
 
