@@ -1,0 +1,144 @@
+{
+  "inventory_date": "2026-11-11",
+  "source_project": "case",
+  "status": "repository_upload_authorized",
+  "assets": [
+    {
+      "id": "t50-overview",
+      "source_relative_to_case": "outputs/T50-MLP-v11-interface05-30000/figures/comparison_t0650.png",
+      "local_path": "assets/images/t50-cfd-v10-v11-t065.png",
+      "sha256": "e86e1e84225ffb20dfc05ff2b47516cbd8ac1582ae63f717620ccbaf2c948854",
+      "bytes": 61067,
+      "size_px": [
+        1530,
+        750
+      ],
+      "frames": 1,
+      "duration_ms": 0,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t50-temperature-poster",
+      "source_relative_to_case": "outputs/T50-visual-comparison-v1/temperature_t0250.png",
+      "local_path": "assets/images/t50-temperature-t025.png",
+      "sha256": "ff1155edceab64f0c472f98dcd8c2e65bba5b928d307bfac8ed7af851e6645e2",
+      "bytes": 30882,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 1,
+      "duration_ms": 0,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t50-gas-poster",
+      "source_relative_to_case": "outputs/T50-visual-comparison-v1/gas_fraction_t0250.png",
+      "local_path": "assets/images/t50-gas-t025.png",
+      "sha256": "320f0ca77d612d8cad831ae52c772f62db3e0c22cb5272d0ddc435823182fb10",
+      "bytes": 18182,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 1,
+      "duration_ms": 0,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t50-temperature-animation",
+      "source_relative_to_case": "outputs/T50-visual-comparison-v1/temperature_CFD_V10_V11.gif",
+      "local_path": "assets/animations/t50-temperature-cfd-v10-v11.gif",
+      "sha256": "153832c4ea1ab54cfd0a94e732b17ecce76434a5d449cfe3ca66268434bc5cc5",
+      "bytes": 1105707,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 13,
+      "duration_ms": 7800,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t50-gas-animation",
+      "source_relative_to_case": "outputs/T50-visual-comparison-v1/gas_fraction_CFD_V10_V11.gif",
+      "local_path": "assets/animations/t50-gas-fraction-cfd-v10-v11.gif",
+      "sha256": "b04991b83f00d77e06656f557ca32d897ffcb77e84de68b9ac685ecd9504cdea",
+      "bytes": 278122,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 13,
+      "duration_ms": 7800,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t65-temperature-poster",
+      "source_relative_to_case": "outputs/T65-MLP-v1-independent-30000/figures/temperature_t0650.png",
+      "local_path": "assets/images/t65-temperature-t065.png",
+      "sha256": "b1a6838bfdee8f2719fae8f0af1143cf93e0b7563df9782132831ea809c555a2",
+      "bytes": 47544,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 1,
+      "duration_ms": 0,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t65-gas-poster",
+      "source_relative_to_case": "outputs/T65-MLP-v1-independent-30000/figures/gas_fraction_t0650.png",
+      "local_path": "assets/images/t65-gas-t065.png",
+      "sha256": "4f88385a90ee657c1d84050771d03e81c0ed35c4a107adbc06de42b2952971c4",
+      "bytes": 25467,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 1,
+      "duration_ms": 0,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t65-temperature-animation",
+      "source_relative_to_case": "outputs/T65-MLP-v1-independent-30000/figures/temperature_CFD_MLP_linear.gif",
+      "local_path": "assets/animations/t65-temperature-cfd-mlp-linear.gif",
+      "sha256": "7d94c6790351bff33969ec01043f093222cc90815bb1651111d5b4aff9156553",
+      "bytes": 1009925,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 12,
+      "duration_ms": 7200,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    },
+    {
+      "id": "t65-gas-animation",
+      "source_relative_to_case": "outputs/T65-MLP-v1-independent-30000/figures/gas_fraction_CFD_MLP_linear.gif",
+      "local_path": "assets/animations/t65-gas-fraction-cfd-mlp-linear.gif",
+      "sha256": "3a0254d8d1c3f5b156875e20dee57611e5221e9822d25ac2a90f6fa655483d1e",
+      "bytes": 269364,
+      "size_px": [
+        765,
+        750
+      ],
+      "frames": 12,
+      "duration_ms": 7200,
+      "publication_status": "repository_upload_authorized",
+      "transformation": "none"
+    }
+  ],
+  "repository": "wyhen14/boiling-research-notes",
+  "upload_authorized_date": "2026-11-16"
+}

@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-11",
+  "scope": "report transcription only; no model training or metric recomputation",
+  "checks": [
+    {
+      "case": "t50",
+      "source_relative_to_case": "outputs/T50-MLP-v11-interface05-30000/REPORT.md",
+      "source_sha256": "5efeb44c4bd30835cc1891a5ca066be393cd494336d6e03f276402be1142ebc8",
+      "metrics_verified": [
+        {
+          "label": "全域溫度 RMSE ↓",
+          "source_row": "| 溫度RMSE (K) | 0.254129 | 0.194848 | 0.0601549 | 改善／持平 |",
+          "conversion": "none",
+          "model": 0.194848,
+          "baseline": 0.0601549
+        },
+        {
+          "label": "氣相分率 RMSE ↓",
+          "source_row": "| 氣相分率RMSE | 0.017256 | 0.017256 | 0.0612378 | 改善／持平 |",
+          "conversion": "none",
+          "model": 0.017256,
+          "baseline": 0.0612378
+        },
+        {
+          "label": "氣相 Dice ↑",
+          "source_row": "| 氣泡Dice | 0.989212 | 0.989212 | 0.943802 | 改善／持平 |",
+          "conversion": "none",
+          "model": 0.989212,
+          "baseline": 0.943802
+        },
+        {
+          "label": "界面距離 ↓",
+          "source_row": "| 界面距離 (m) | 0.000197066 | 0.000197066 | 0.000790951 | 改善／持平 |",
+          "conversion": "m to mm",
+          "model": 0.197066,
+          "baseline": 0.790951
+        },
+        {
+          "label": "底部 4 列溫度 RMSE ↓",
+          "source_row": "| 底部4列溫度RMSE (K) | 0.401927 | 0.373238 | 0.0309414 | 改善／持平 |",
+          "conversion": "none",
+          "model": 0.373238,
+          "baseline": 0.0309414
+        },
+        {
+          "label": "界面帶溫度 RMSE ↓",
+          "source_row": "| 界面帶溫度RMSE (K) | 0.298174 | 0.451503 | 0.479158 | 退步／不可比 |",
+          "conversion": "none",
+          "model": 0.451503,
+          "baseline": 0.479158
+        }
+      ]
+    },
+    {
+      "case": "t65",
+      "source_relative_to_case": "outputs/T65-MLP-v1-independent-30000/REPORT.md",
+      "source_sha256": "7e1d2337d1658c5aabd662f8e117028dee7b128ac034bfa34617567e5d65a715",
+      "metrics_verified": [
+        {
+          "label": "全域溫度 RMSE ↓",
+          "source_row": "| 溫度RMSE (K) | 0.302515 | 0.0876871 |",
+          "conversion": "none",
+          "model": 0.302515,
+          "baseline": 0.0876871
+        },
+        {
+          "label": "氣相分率 RMSE ↓",
+          "source_row": "| 氣相分率RMSE | 0.0179796 | 0.0622111 |",
+          "conversion": "none",
+          "model": 0.0179796,
+          "baseline": 0.0622111
+        },
+        {
+          "label": "氣相 Dice ↑",
+          "source_row": "| 氣泡Dice | 0.99209 | 0.951937 |",
+          "conversion": "none",
+          "model": 0.99209,
+          "baseline": 0.951937
+        },
+        {
+          "label": "界面距離 ↓",
+          "source_row": "| 界面距離 (m) | 0.000396733 | 0.000763798 |",
+          "conversion": "m to mm",
+          "model": 0.396733,
+          "baseline": 0.763798
+        },
+        {
+          "label": "底部 4 列溫度 RMSE ↓",
+          "source_row": "| 底部4列溫度RMSE (K) | 0.567743 | 0.0483599 |",
+          "conversion": "none",
+          "model": 0.567743,
+          "baseline": 0.0483599
+        },
+        {
+          "label": "界面帶溫度 RMSE ↓",
+          "source_row": "| 界面帶溫度RMSE (K) | 0.692059 | 0.678496 |",
+          "conversion": "none",
+          "model": 0.692059,
+          "baseline": 0.678496
+        }
+      ]
+    }
+  ]
+}

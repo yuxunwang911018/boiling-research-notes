@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.venv/
+__pycache__/
+.env
+.env.*
+!.env.example
+
+# 本機待確認的研究素材，確認公開範圍後再另行挑選至 assets/。
+/review-materials/
+
+# 由內容、模板與素材產生，部署時使用此資料夾。
+/dist/

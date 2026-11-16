@@ -1,0 +1,131 @@
+{
+  "slug": "t50",
+  "order": 1,
+  "label": "T50",
+  "title": "T50：溫度與氣相的重建觀察",
+  "summary": "降低界面溫度權重後，全域溫度誤差改善；氣相主輪廓接近 CFD，局部小區域仍有漏失。",
+  "version": "V11 · independent",
+  "updated": "2026-11-11",
+  "question": "在同一工況內，能否以座標與時間重建溫度和氣相分率，同時保留局部氣相形態？",
+  "conditions": [
+    {
+      "label": "案例標記",
+      "value": "T50 · 過熱度標示 50 K"
+    },
+    {
+      "label": "資料範圍",
+      "value": "133 張快照 · 0.01–1.33 s"
+    },
+    {
+      "label": "空間網格",
+      "value": "100 × 300 cell centers"
+    },
+    {
+      "label": "時間快照切分",
+      "value": "107 train / 13 validation / 13 test"
+    },
+    {
+      "label": "本次評分",
+      "value": "13 張 validation · 0.05–1.25 s；V11 未推論或評分 test"
+    },
+    {
+      "label": "模型選擇",
+      "value": "30,000 次更新；最佳 checkpoint：29,600"
+    }
+  ],
+  "methods": [
+    "以 (x, y, t) 輸入，使用固定 Fourier 座標特徵及兩個獨立的 T／αᵥ 網路，seed 42 從頭訓練。",
+    "相對 V10，僅把溫度目標從 80% 全域＋20% 界面帶改為 95% 全域＋5% 界面帶，保留重要性校正與氣相抽樣策略。",
+    "正規化與抽樣池僅取自 train；依完整 validation 綜合 loss 選同一 checkpoint，再與只用 train 的時間插值比較。"
+  ],
+  "metrics": [
+    {
+      "label": "全域溫度 RMSE ↓",
+      "model": 0.194848,
+      "baseline": 0.0601549,
+      "unit": "K",
+      "aggregation": "pooled"
+    },
+    {
+      "label": "氣相分率 RMSE ↓",
+      "model": 0.017256,
+      "baseline": 0.0612378,
+      "unit": "無因次",
+      "aggregation": "pooled"
+    },
+    {
+      "label": "氣相 Dice ↑",
+      "model": 0.989212,
+      "baseline": 0.943802,
+      "unit": "無因次",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "界面距離 ↓",
+      "model": 0.197066,
+      "baseline": 0.790951,
+      "unit": "mm",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "底部 4 列溫度 RMSE ↓",
+      "model": 0.373238,
+      "baseline": 0.0309414,
+      "unit": "K",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "界面帶溫度 RMSE ↓",
+      "model": 0.451503,
+      "baseline": 0.479158,
+      "unit": "K",
+      "aggregation": "逐幀平均"
+    }
+  ],
+  "interpretation": "V11 的全域溫度 RMSE 比 V10 降低約 23.33%；與時間插值相比，氣相分率、Dice 與界面距離較好，但全域和底部溫度誤差較高。不同指標的優劣需要分開解讀。",
+  "acceptance": {
+    "automatic": "原定六項數值門檻通過，但 0.25 s 的 5-cell 次要區域完全漏失，歷史整體自動判定仍為 not_accepted。",
+    "stage": "使用者後續已接受此獨立重現為階段性基準；此決策不回改原始門檻或歷史判定。"
+  },
+  "limitations": [
+    "僅驗證同工況的時間內插；沒有證明未來預測、新工況泛化或物理守恆，也不是完整 PINN。",
+    "V10 與 V11 的氣相預測相同；比較動畫中兩欄相同並不代表新增的獨立證據。",
+    "低氣相分率殘影與局部形變仍存在；全域指標不能取代局部形狀檢查。",
+    "底部 4 列是 cell centers，不是物理壁面；目前缺 CAS／DAT，未重新執行原生驗證。"
+  ],
+  "media": [
+    {
+      "label": "溫度場",
+      "poster": "assets/images/t50-temperature-t025.png",
+      "animation": "assets/animations/t50-temperature-cfd-v10-v11.gif",
+      "alt": "T50 的 CFD、V10 與 V11 溫度場並排比較，靜態圖為 0.25 秒。",
+      "caption": "由左至右：CFD／V10／V11。靜態圖為 0.25 s；動畫為 13 個 validation 時刻（0.05–1.25 s），每幀 600 ms，固定色階。播放速度不等於物理時間。",
+      "source_id": "t50-animation"
+    },
+    {
+      "label": "氣相分率",
+      "poster": "assets/images/t50-gas-t025.png",
+      "animation": "assets/animations/t50-gas-fraction-cfd-v10-v11.gif",
+      "alt": "T50 的 CFD、V10 與 V11 氣相分率並排比較，顯示局部小氣相區域的差異。",
+      "caption": "由左至右：CFD／V10／V11。靜態圖為 0.25 s；動畫為 13 個 validation 時刻。V10 與 V11 氣相預測相同；0.25 s 小區域仍有漏失。",
+      "source_id": "t50-animation"
+    }
+  ],
+  "sources": [
+    {
+      "id": "t50-report",
+      "title": "T50 V11 結果報告",
+      "path": "outputs/T50-MLP-v11-interface05-30000/REPORT.md"
+    },
+    {
+      "id": "t50-animation",
+      "title": "T50 分場比較動畫紀錄",
+      "path": "outputs/T50-visual-comparison-v1/animation_report.json"
+    },
+    {
+      "id": "stage-acceptance",
+      "title": "獨立重現階段接受紀錄",
+      "path": "docs/RECONSTRUCTION_STAGE_ACCEPTANCE.md"
+    }
+  ]
+}

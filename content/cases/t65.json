@@ -1,0 +1,132 @@
+{
+  "slug": "t65",
+  "order": 2,
+  "label": "T65",
+  "title": "T65：把同一方法帶到另一個工況",
+  "summary": "沿用 T50 V11 的方法，在 T65 資料上獨立重訓。氣相形態接近 CFD，溫度擬合仍有改善空間。",
+  "version": "v1 · independent",
+  "updated": "2026-11-11",
+  "question": "沿用 T50 V11 的模型與訓練方法，換成 T65 資料從頭訓練，能否重現另一個工況的溫度與氣相分率？",
+  "conditions": [
+    {
+      "label": "案例標記",
+      "value": "T65 · 過熱度標示 65 K"
+    },
+    {
+      "label": "資料範圍",
+      "value": "120 張快照 · 0.01–1.20 s"
+    },
+    {
+      "label": "空間網格",
+      "value": "100 × 300 cell centers"
+    },
+    {
+      "label": "時間快照切分",
+      "value": "97 train / 12 validation / 11 test"
+    },
+    {
+      "label": "本次評分",
+      "value": "12 張 validation · 0.05–1.15 s；本版未推論或評分 test"
+    },
+    {
+      "label": "模型選擇",
+      "value": "30,000 次更新；最佳 checkpoint：25,400"
+    }
+  ],
+  "methods": [
+    "沿用 T50 V11 的網路、seed 42、損失設計及抽樣策略；以 T65 train 從頭訓練，不載入 T50 權重，也不混合兩工況資料。",
+    "只用 T65 train 擬合正規化並建立抽樣池，保留既有完整時間快照切分；首尾快照為 train，驗證點被訓練時刻前後包夾。",
+    "以完整 validation 綜合 loss 選同一 checkpoint，分別比較模型與只用 T65 train 的時間線性插值。"
+  ],
+  "metrics": [
+    {
+      "label": "全域溫度 RMSE ↓",
+      "model": 0.302515,
+      "baseline": 0.0876871,
+      "unit": "K",
+      "aggregation": "pooled"
+    },
+    {
+      "label": "氣相分率 RMSE ↓",
+      "model": 0.0179796,
+      "baseline": 0.0622111,
+      "unit": "無因次",
+      "aggregation": "pooled"
+    },
+    {
+      "label": "氣相 Dice ↑",
+      "model": 0.99209,
+      "baseline": 0.951937,
+      "unit": "無因次",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "界面距離 ↓",
+      "model": 0.396733,
+      "baseline": 0.763798,
+      "unit": "mm",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "底部 4 列溫度 RMSE ↓",
+      "model": 0.567743,
+      "baseline": 0.0483599,
+      "unit": "K",
+      "aggregation": "逐幀平均"
+    },
+    {
+      "label": "界面帶溫度 RMSE ↓",
+      "model": 0.692059,
+      "baseline": 0.678496,
+      "unit": "K",
+      "aggregation": "逐幀平均"
+    }
+  ],
+  "interpretation": "模型在氣相分率 RMSE、Dice 與界面距離上優於時間插值；三項溫度指標則仍由時間插值較好。這支持方法在第二個工況獨立重現的可行性，但不能解讀為新工況泛化或全面勝出。",
+  "acceptance": {
+    "automatic": "原定六項數值門檻通過三項，三項溫度門檻未通過，歷史自動判定為 not_accepted。五個真值次要氣相區域皆有非零覆蓋，但形狀仍有差異。",
+    "stage": "使用者已接受本次約 0.3 K 全域溫度 RMSE 的獨立重現，列為階段性基準；這不把 0.3 K 變成其他區域或新模型的通用門檻。"
+  },
+  "limitations": [
+    "這是用 T65 資料獨立訓練的同工況時間內插，不是把 T50 模型直接用在未知工況，也不是完整 PINN 或未來預測。",
+    "次要區域仍有尺寸與形狀差異，部分時刻有額外局部氣相訊號；非零覆蓋不等於形狀完全正確。",
+    "訓練時刻全域溫度 RMSE 約 0.303 K，與 validation 接近，提示擬合尚不足，但不能據此確定主因。",
+    "本站 T65 動畫為 CFD／MLP／時間插值；T50 動畫為 CFD／V10／V11，對照組不同，不能當成同一組跨案例比較。",
+    "底部 4 列為 cell centers，不是物理壁面；原生 CAS／DAT 缺少，網站未重新執行原生核對。"
+  ],
+  "media": [
+    {
+      "label": "溫度場",
+      "poster": "assets/images/t65-temperature-t065.png",
+      "animation": "assets/animations/t65-temperature-cfd-mlp-linear.gif",
+      "alt": "T65 的 CFD、獨立 MLP 與時間線性插值溫度場比較，靜態圖為 0.65 秒。",
+      "caption": "由左至右：CFD／MLP／時間線性插值。靜態圖為 0.65 s；動畫為 12 個 validation 時刻（0.05–1.15 s），每幀 600 ms，固定色階。播放速度不等於物理時間。",
+      "source_id": "t65-report"
+    },
+    {
+      "label": "氣相分率",
+      "poster": "assets/images/t65-gas-t065.png",
+      "animation": "assets/animations/t65-gas-fraction-cfd-mlp-linear.gif",
+      "alt": "T65 的 CFD、獨立 MLP 與時間線性插值氣相分率比較，可觀察主要形態與局部差異。",
+      "caption": "由左至右：CFD／MLP／時間線性插值。靜態圖為 0.65 s；動畫為 12 個 validation 時刻，僅呈現已有快照，不新增中間影格。",
+      "source_id": "t65-report"
+    }
+  ],
+  "sources": [
+    {
+      "id": "t65-report",
+      "title": "T65 獨立重現結果報告",
+      "path": "outputs/T65-MLP-v1-independent-30000/REPORT.md"
+    },
+    {
+      "id": "t65-plan",
+      "title": "T65 獨立重現設計",
+      "path": "docs/T65_RECONSTRUCTION_PLAN.md"
+    },
+    {
+      "id": "stage-acceptance",
+      "title": "獨立重現階段接受紀錄",
+      "path": "docs/RECONSTRUCTION_STAGE_ACCEPTANCE.md"
+    }
+  ]
+}
